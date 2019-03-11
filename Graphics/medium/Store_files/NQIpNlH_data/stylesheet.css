@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,600');
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+
+p{
+font-family: "Futura PT Demi",;	
+}
+h2{font-family: "Bauhaus 93",}
+
+*{margin:0;
+padding:0;}
+
+a{text-decoration: none;}
+
+a:hover {color:#dd640c}
+a:link {color:#92b7d4 }
+
+.clr{clear:both}
+
+:root {
+  --background: #C52613;}
+
+*, *::before, *::after {
+  box-sizing: border-box;}
+::selection {
+	background:#C52613;
+}
+
+hr.lines { 
+border: 0;
+height: 55px;
+background-image: url(Graphics/small/hr-lines.png);
+background-repeat: no-repeat;
+}
+
+h2 {text-decoration: none}
+
+body {
+	margin: 0;
+	background: white; 
+	font-family: "Futura PT Demi";
+	font-weight: 400;}
+
+/* -----------Style for the NAVbar------- */
+
+header {
+  background: var(--background);
+  text-align: center;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+}
+
+/* changed this from the tutorial video to
+   allow it to gain focus, making it tabbable */
+.nav-toggle {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+
+.nav-toggle:focus ~ .nav-toggle-label {
+  outline: 3px solid rgba(lightblue, .75);
+}
+
+.nav-toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 1em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: white;
+  height: 2px;
+  width: 2em;
+  border-radius: 2px;
+  position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: '';
+  position: absolute;
+}
+
+.nav-toggle-label span::before {
+  bottom: 7px;
+}
+
+.nav-toggle-label span::after {
+  top: 7px;
+}
+
+nav {
+  position: absolute;
+  text-align: left;
+  top: 100%;
+  left: 0;
+  background: var(--background);
+  width: 100%;
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: transform 400ms ease-in-out;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+.nav-toggle:checked ~ nav {
+  transform: scale(1,1);
+}
+
+.nav-toggle:checked ~ nav a {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out 250ms;
+}
+
+@media screen and (min-width: 800px) {
+  .nav-toggle-label {
+    display: none;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;}
+  
+  .logo {
+    grid-column: 2 / 3;}
+  
+  nav {
+    
+    /* the following lines are not from my video, but add Edge support */
+    position: relative;
+    text-align: left;
+    transition: none;
+    transform: scale(1,1);
+    background: none;
+    top: initial;
+    left: initial;
+    /* end Edge support stuff */
+    
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  nav ul {
+    display: flex;
+  }
+  
+  nav li {
+    margin-left: 3em;
+    margin-bottom: 0;
+  }
+  
+  nav a {
+    opacity: 1;
+    position: relative;
+  }
+  
+  nav a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: black;
+    position: absolute;
+    top: -.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+  }
+  
+  nav a:hover::before {
+    transform: scale(1,1);
+  }
+}
+
+/* -------------Style for homepage---------- */
+
+.welcome {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+	justify-content: center;}
+	
+	
+/*	display:grid;
+grid-template-areas:
+	'event event art-style'
+	'about-me merchendise design-page'
+}*/
+
+.upcoming_events_home {
+	grid-area: event;}
+
+.art_style_page_home{
+	grid-area: art-style;}
+
+.design_page_home{
+	grid-area: design-page;}
+.about_page_home{
+	grid-area:about-me;}
+.about_picture_text{
+}
+.storepage_home{
+	grid-area:store;
+}
+
+.text-block {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: black;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (min-width: 1200px){
+	.welcome {
+		display: grid;
+		justify-content: center;
+		grid-template-areas: 
+			'event event'
+			'art-style design-page'
+			'about-me store'
+			;}}
+
+@media (max-width: 1200px){
+	.upcoming_events_home{
+	object-fit: contain;
+	overflow: hidden;
+	}}
+
+	
+/* ------------Style for about page--------- */
+
+.about_me {
+  display: grid;
+	grid-template-columns: 1fr minmax(200px, 700px) 1fr;
+	grid-template-rows: auto 75px 75px auto}
+	
+	.about_image{
+		grid-column-start: 2;
+		grid-column-end:2;
+		grid-row-start: 1;
+		grid-row-end: 1}
+	.about-title{
+		grid-column-start: 2;
+		grid-column-end: 2;
+		grid-row-start:2;
+		grid-row-end:2;}
+	.about-subtitle{
+		grid-column-start: 2;
+		grid-column-end: 2;
+		grid-row-start: 3;
+		grid-row-end: 3;}
+		
+	.about-text {
+		grid-column-start: 2;
+		grid-column-end: 2;
+		grid-row-start: 4;}
+	
+	
+	
+/* ----- Style for art style page --- */
+
+.article_text {
+  	display: grid;
+	align-items: center;
+	grid-template-columns: 1fr minmax(200px, 700px) 1fr;
+	grid-template-rows: 400px 100px auto;}
+	
+	.art_style_image{
+		grid-column-start: 2;
+		grid-column-end:2;
+		grid-row-start: 1;
+		grid-row-end: 1;}
+	.design-title{
+		grid-column-start: 2;
+		grid-column-end: 2;
+		grid-row-start:2;
+		grid-row-end:2;}
+	.design-description{
+		grid-column-start: 2;
+		grid-column-end: 2;
+		grid-row-start: 3;
+		grid-row-end: 3;}
+
+.art_style_design_images{
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+	justify-content: space-around;
+}
+.art_style_design_images img{
+	margin: 10px;
+}
+	/*--------Style for design page----------*/
+
+.design {
+  	display: grid;
+	align-items: center;
+	grid-template-columns: 1fr minmax(200px, 700px) 1fr;
+	grid-template-rows: auto auto auto auto;}
+	
+.design-item{
+		grid-column-start: 2;
+		grid-column-end:2;
+		grid-row-start: 1;
+		grid-row-end: 1;}
+
+.design-image{
+		grid-column-start: 2;
+		grid-column-end:2;
+		grid-row-start: 2;
+		grid-row-end: 2;}
+
+.typography_about{
+		grid-column-start: 2;
+		grid-column-end: 2;
+		grid-row-start: 3;
+		grid-row-end: 3;}
+
+.about_page_home {
+text-decoration: none;}
+.art_style_page_home {
+text-decoration: none;}
+.design_page_home {
+text-decoration: none;}
+
+/*--------Style for store----------*/
+
+.store_container{
+	display:grid;
+	grid-template-columns: 1fr 7fr;}
+
+.store_navbar{
+	grid-column: 1;
+	left: 50px;
+}
+
+.store_items_albums{
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+padding:50px;
+grid-column: 2;
+grid-row-gap: 50px;
+grid-column-gap: 50px;}
+		
+	/*--------Style for footer----------*/
+	
+	#main-footer{
+	display:block;
+	background:#C52613;
+	color:#fff;
+	text-align:center;
+	padding:20px;
+	margin-top:40px;}
